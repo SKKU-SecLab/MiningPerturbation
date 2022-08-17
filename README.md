@@ -1,5 +1,5 @@
 # MiningPerturbation
-MiningPerturbation is a packet manipulation network paturbation python script for bypassing the network-based cryptojacking detection model.
+MiningPerturbation is a packet manipulation network paturbation python script for bypassing the network-based cryptojacking detection model (Tekiner et al. ).
 
 ## Requirement
 - tsfresh

@@ -19,16 +19,8 @@ conditions. The experimental results showed that the best classifier achieved 97
 - **Splitting** is to break a packet into several smaller packets. Given a sequence of packets for either TCP or UDP traffic, an attacker assembles the packets and then splits them into 𝑘 packets again.
 - **Obfuscation proxy** is to use a network proxy server obfuscating the distribution of packet sizes and timing among packets. Check out obfs4 (https://github.com/Yawning/obfs4) which is used in our experiment
 
-
-## MiningPerturbation results
-
-
-
-
 ## Contact
 If you experience any issues, you can ask for help by contacting us at kiho@skku.edu
-
-
 
 ## References
 [1] Ege Tekiner, Abbas Acar, and A Selcuk Uluagac. A Lightweight IoT Cryptojacking Detection Mechanism in Heterogeneous Smart Home Networks. In Proc. of the ISOC Network and Distributed System Security Symposium (NDSS), 2022.

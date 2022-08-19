@@ -1,4 +1,5 @@
 #!/bin/usr/env/python3
+import string
 import  pyshark
 from scapy.all import *
 from random import randint
@@ -7,16 +8,27 @@ from multiprocessing import Process
 import math
 import os
 import time
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-i', '--interface', dest = 'interface', type=string, help = 'Interface Name for which packet is supposed to be captured.')
+parser.add_argument('-sip', '--sourceip', dest = 'sourceip', type=string, help = 'Source IP for which packet is supposed to be captured.')
+parser.add_argument('-dip', '--destinationip', dest = 'destinationip',type=string, help = 'Destination IP for which packet is supposed to be captured.')
+parser.add_argument('-sport', '--sourceport', dest = 'sourceport',type=int, help = 'Source Port for which packet is supposed to be captured.')
+parser.add_argument('-dport', '--destinationport', dest = 'destinationport',type=int, help = 'Destination Port for which packet is supposed to be captured.')
+options = parser.parse_args()
 
+if not options.interface:
+    parser.error('[-] Please specify the name of the interface, use --help for more info.')
+args = parser
 
 
 print("Started");
 
-sip = "MY.SOURCE.IP.ADDRESS"
-dip = "MY.DESTINATION.IP.ADDRESS"
-sprt = 50000   #temporary
-dprt = 60000
+sip = args.sourceip
+dip = args.destinationip
+sprt = args.sourceport
+dprt = args.destinationport
 
 # HS
 packetEther = Ether()
@@ -30,31 +42,22 @@ ack_packet = TCP(sport = sprt, dport = dprt, flags = "A", seq = 101, ack = my_ac
 send(ip/ack_packet)
 
 # SNIFFED from bettercap
-capture = pyshark.LiveCapture(get_args(), display_filter='tcp')
+capture = pyshark.LiveCapture(args.interface, display_filter='tcp')
 # sniffed_pkts = rdpcap("/root/tmp/bettercap/monero_mining.pcap")
 
 # sniffer(interface)
+process1 = Process(target = fragment_execute(capture, 500))
+process2 = Process(target = inserting_packet(4, 1))
+
 for packet in capture:
-    p1 = Process(target = fragment_execute(capture, 500))
-    p2 = Process(target = inserting_packet(4, 1000))
+    process1.start()
+    process2.start()
+
+    process1.join()
+    process2.join()
+    
 
 # iptables -A OUTPUT -p tcp --tcp-flags RST RST -j DROP
-
-p1.start()
-p2.start()
-
-p1.join()
-p2.join()
-
-def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--interface', dest = 'interface', help = 'Interface Name for which packet is supposed to be captured.')
-    options = parser.parse_args()
-    
-    if not options.interface:
-        parser.error('[-] Please specify the name of the interface, use --help for more info.')
-        
-    return options.interface
 
 def sniffer(interface):
     scapy.sniff(iface = interface, store = False, prn = process_packet)
@@ -174,4 +177,3 @@ def generate_tcp_packet(payload_size, fragsize=1460):
 
     payload.append(str(num_frags) * (payload_size - (fragsize * num_frags)))
     return IP()/TCP(flags="")/(''.join(payload))
-    

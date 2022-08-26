@@ -24,7 +24,8 @@ conditions. The experimental results showed that the best classifier achieved 97
 - **Obfuscation proxy** is to use a network proxy server obfuscating the distribution of packet sizes and timing among packets. Check out obfs4 (https://github.com/Yawning/obfs4) which is used in our experiment
 
 ## See Results
-The result of the attack can be checked in the following file. (https://github.com/SKKU-SecLab/MiningPerturbation/blob/main/Adversarial_Perturbation_Results.ipynb)
+The result of the attack can be checked in the following file. 
+(https://github.com/SKKU-SecLab/MiningPerturbation/blob/main/Adversarial_Perturbation_Results.ipynb)
 ```bash
 git clone https://github.com/SKKU-SecLab/MiningPerturbation.git
 cd MiningPerturbation

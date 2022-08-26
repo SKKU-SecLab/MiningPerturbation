@@ -1,6 +1,9 @@
 # MiningPerturbation
 MiningPerturbation is a python script for bypassing the network-based cryptojacking detection model (Tekiner et al. ) using network packet manipulation.
 
+## Experimental environment
+- Linux kali 5.18.0-kali5-amd64
+- python 3.10.5
 
 ## Requirement
 - tsfresh
@@ -20,8 +23,13 @@ conditions. The experimental results showed that the best classifier achieved 97
 - **Splitting** is to break a packet into several smaller packets. Given a sequence of packets for either TCP or UDP traffic, an attacker assembles the packets and then splits them into 𝑘 packets again.
 - **Obfuscation proxy** is to use a network proxy server obfuscating the distribution of packet sizes and timing among packets. Check out obfs4 (https://github.com/Yawning/obfs4) which is used in our experiment
 
-## Adversarial Perturbation Result
+## See Results
 The result of the attack can be checked in the following file. (https://github.com/SKKU-SecLab/MiningPerturbation/blob/main/Adversarial_Perturbation_Results.ipynb)
+```bash
+git clone https://github.com/SKKU-SecLab/MiningPerturbation.git
+cd MiningPerturbation
+```
+Open the file "Adversarial_Perturbation_Results.ipynb" and then try to run it.
 
 ## Contact
 If you experience any issues, you can ask for help by contacting us at kiho@skku.edu

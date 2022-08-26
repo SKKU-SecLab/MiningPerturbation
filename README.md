@@ -1,6 +1,16 @@
 # MiningPerturbation
 MiningPerturbation is a python script for bypassing the network-based cryptojacking detection model (Tekiner et al. ) using network packet manipulation.
 
+## Target Machine Learning Model
+Tekiner et al. [1] recently proposed the state-of-the-art cryptojacking detection system in IoT networks, using the IoT devices’ network traffic for cryptojacking. The proposed solution first extracts time-series features from network packet data between an IoT device and a mining server (by the tsfresh [2] package in Python) and analyzes their statistical properties to use them as the features for a classifier. Tekiner et al. performed experiments to find the key features, the most accurate classifier, and the optimum training size and evaluated the effectiveness of their cryptojacking detection mechanisms under various attacker configurations and network
+conditions. The experimental results showed that the best classifier achieved 97% detection accuracy with only one hour of training data.
+
+## Perturbations for adversarial examples
+- **Dummy packet** s to randomly insert a dummy packet into the network packets for crypto mining at 𝑡 time interval.
+- **Padding** adds 𝑘 zero bytes at the end of a chosen packet to adjust its size and updates the packet length and checksum fields after padding.
+- **Splitting** is to break a packet into several smaller packets. Given a sequence of packets for either TCP or UDP traffic, an attacker assembles the packets and then splits them into 𝑘 packets again.
+- **Obfuscation proxy** is to use a network proxy server obfuscating the distribution of packet sizes and timing among packets. Check out obfs4 (https://github.com/Yawning/obfs4) which is used in our experiment
+
 ## Experimental environment
 - Linux kali 5.18.0-kali5-amd64
 - python 3.10.5
@@ -14,16 +24,6 @@ We recommand using the python3-venv environment.
 !cd <env_name>
 !pip install tsfresh scapy scikit-learn pandas numpy
 ```
-
-## Target Machine Learning Model
-Tekiner et al. [1] recently proposed the state-of-the-art cryptojacking detection system in IoT networks, using the IoT devices’ network traffic for cryptojacking. The proposed solution first extracts time-series features from network packet data between an IoT device and a mining server (by the tsfresh [2] package in Python) and analyzes their statistical properties to use them as the features for a classifier. Tekiner et al. performed experiments to find the key features, the most accurate classifier, and the optimum training size and evaluated the effectiveness of their cryptojacking detection mechanisms under various attacker configurations and network
-conditions. The experimental results showed that the best classifier achieved 97% detection accuracy with only one hour of training data.
-
-## Perturbations for adversarial examples
-- **Dummy packet** s to randomly insert a dummy packet into the network packets for crypto mining at 𝑡 time interval.
-- **Padding** adds 𝑘 zero bytes at the end of a chosen packet to adjust its size and updates the packet length and checksum fields after padding.
-- **Splitting** is to break a packet into several smaller packets. Given a sequence of packets for either TCP or UDP traffic, an attacker assembles the packets and then splits them into 𝑘 packets again.
-- **Obfuscation proxy** is to use a network proxy server obfuscating the distribution of packet sizes and timing among packets. Check out obfs4 (https://github.com/Yawning/obfs4) which is used in our experiment
 
 ## See Results
 The result of the attack can be checked in the following file. 

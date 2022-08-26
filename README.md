@@ -6,12 +6,9 @@ MiningPerturbation is a python script for bypassing the network-based cryptojack
 - python 3.10.5
 
 ## Requirement
-- tsfresh
-- scapy
-- bettercap
-- scikit-learn
-- pandas
-- numpy
+```bash
+!pip install tsfresh scapy scikit-learn pandas numpy
+```
 
 ## Target Machine Learning Model
 Tekiner et al. [1] recently proposed the state-of-the-art cryptojacking detection system in IoT networks, using the IoT devices’ network traffic for cryptojacking. The proposed solution first extracts time-series features from network packet data between an IoT device and a mining server (by the tsfresh [2] package in Python) and analyzes their statistical properties to use them as the features for a classifier. Tekiner et al. performed experiments to find the key features, the most accurate classifier, and the optimum training size and evaluated the effectiveness of their cryptojacking detection mechanisms under various attacker configurations and network
@@ -25,7 +22,7 @@ conditions. The experimental results showed that the best classifier achieved 97
 
 ## See Results
 The result of the attack can be checked in the following file. 
-(https://github.com/SKKU-SecLab/MiningPerturbation/blob/main/Adversarial_Perturbation_Results.ipynb)
+- (https://github.com/SKKU-SecLab/MiningPerturbation/blob/main/Adversarial_Perturbation_Results.ipynb)
 ```bash
 git clone https://github.com/SKKU-SecLab/MiningPerturbation.git
 cd MiningPerturbation

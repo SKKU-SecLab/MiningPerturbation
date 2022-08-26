@@ -38,7 +38,7 @@ sudo kill -9 `ps -ef | grep MiningPerturbation | grep -v grep | awk '{print $2}'
   
   - In another terminal, xmrig console
   ```bash
-  /xmrig -o 192.168.126.129:10128 -u 49p8HTZ5Gnkc88dWKJqmk7aWCs57Pnmk9NekkYiGWPkHc2HEmX8jzMyKbXcoyDti7EDTnXZmsG6o39ZF1LcrzWNrM7vo3Fi -p pi3bplus -t 4 -l mining_crypto_xmr_xmrig.log
+  /xmrig -o <LOCAL_HOST>:<LOCAL_PORT> -u <XMRIG_WALLET> -p pi3bplus -t 4 -l mining_crypto_xmr_xmrig.log
   ```
   ![image](https://user-images.githubusercontent.com/47383452/186926313-8e66944e-b589-47ae-8d66-a77181eab921.png)
 

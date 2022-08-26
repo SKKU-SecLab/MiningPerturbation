@@ -6,7 +6,12 @@ MiningPerturbation is a python script for bypassing the network-based cryptojack
 - python 3.10.5
 
 ## Requirement
+We recommand using the python3-venv environment.
 ```bash
+!sudo apt-get install python3-venv
+!python3 -m venv <env_name>
+!source <env_name>/bin/activate
+!cd <env_name>
 !pip install tsfresh scapy scikit-learn pandas numpy
 ```
 

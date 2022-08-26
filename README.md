@@ -24,6 +24,23 @@ We recommand using the python3-venv environment.
 !cd <env_name>
 !pip install tsfresh scapy scikit-learn pandas numpy
 ```
+## Usage
+```bash
+python MiningPerturbation_sock.py <LOCAL_HOST> <LOCAL_PORT> <REMOTE_HOST> <REMOTE_PORT> <RECEIVE_FIRST:TRUE>
+sudo kill -9 `ps -ef | grep MiningPerturbation | grep -v grep | awk '{print $2}'`
+```
+  ### Example (gulfmoneroocean.stream:10128)
+  - Execute MiningPerturbation terminal first.
+  ```bash
+  sudo python MiningPerturbation_sock.py 192.168.126.129 10128 gulf.moneroocean.stream 10128 True
+  ```
+  ![image](https://user-images.githubusercontent.com/47383452/186924229-b3f4dc08-e676-4188-875f-2f1b88260f76.png)
+  
+  - In another terminal, xmrig console
+  ```bash
+  /xmrig -o 192.168.126.129:10128 -u 49p8HTZ5Gnkc88dWKJqmk7aWCs57Pnmk9NekkYiGWPkHc2HEmX8jzMyKbXcoyDti7EDTnXZmsG6o39ZF1LcrzWNrM7vo3Fi -p pi3bplus -t 4 -l mining_crypto_xmr_xmrig.log
+  ```
+  ![image](https://user-images.githubusercontent.com/47383452/186926313-8e66944e-b589-47ae-8d66-a77181eab921.png)
 
 ## See Results
 The result of the attack can be checked in the following file. 

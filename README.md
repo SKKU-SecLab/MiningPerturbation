@@ -27,9 +27,11 @@ We recommand using the python3-venv environment.
 ## Usage
 ```bash
 python MiningPerturbation_sock.py <LOCAL_HOST> <LOCAL_PORT> <REMOTE_HOST> <REMOTE_PORT> <RECEIVE_FIRST:TRUE>
+
+# For clearing the perturbation procss
 sudo kill -9 `ps -ef | grep MiningPerturbation | grep -v grep | awk '{print $2}'`
 ```
-  ### Example (gulfmoneroocean.stream:10128)
+  ### Example (gulf.moneroocean.stream:10128)
   - Execute MiningPerturbation terminal first.
   ```bash
   sudo python MiningPerturbation_sock.py 192.168.126.129 10128 gulf.moneroocean.stream 10128 True

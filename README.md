@@ -2,7 +2,7 @@
 MiningPerturbation is a python script for bypassing the network-based cryptojacking detection model (Tekiner et al. ) using network packet manipulation.
 
 ## Notice
-This repository is the code for the paper accepted for ACM CCS 2022 poster.   
+This repository is the code for the poster accepted for ACM CCS 2022.   
 " Poster: Adversarial Perturbation Attacks on the State-of-the-Art Cryptojacking Detection System in IoT Networks "
 
 ## Target Machine Learning Model

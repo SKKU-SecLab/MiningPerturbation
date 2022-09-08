@@ -61,8 +61,9 @@ If you experience any issues, you can ask for help by contacting us at kiho@skku
 
 [2] Maximilian Christ, Nils Braun, Julius Neuffer, and Andreas W Kempa-Liehr. Time Series FeatuRe Extraction on basis of Scalable Hypothesis tests (tsfresh – A Python package). Neurocomputing, 2018. (https://github.com/blue-yonder/tsfresh)
 
-# Notice
+## Notice
 This repository is the code for the paper accepted for ACM CCS 2022 poster.
+" Poster: Adversarial Perturbation Attacks on the State-of-the-Art Cryptojacking Detection System in IoT Networks "
 
 ## Citation
 ```bibtex

@@ -69,5 +69,10 @@ If you experience any issues, you can ask for help by contacting us at kiho@skku
 
 ## Citation
 ```bibtex
-
+@inproceedings{lee2022adversarial,
+  title={Adversarial Perturbation Attacks on the State-of-the-Art Cryptojacking Detection System in IoT Networks},
+  author={Lee, Kiho and Oh, Sanghak and Kim, Hyoungshick},
+  booktitle={Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security},
+  year={2022}
+}
 ```

@@ -46,7 +46,6 @@ sudo kill -9 `ps -ef | grep MiningPerturbation | grep -v grep | awk '{print $2}'
   ```bash
   /xmrig -o <LOCAL_HOST>:<LOCAL_PORT> -u <XMRIG_WALLET> -p pi3bplus -t 4 -l mining_crypto_xmr_xmrig.log
   ```
-  [image](https://user-images.githubusercontent.com/47383452/186927241-6383a70a-f111-4673-9625-42c2485fa4b6.png)
 
 ## See Results
 The result of the attack can be checked in the following file. 

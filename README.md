@@ -1,9 +1,13 @@
-# MiningPerturbation
-MiningPerturbation is a python script for bypassing the network-based cryptojacking detection model (Tekiner et al. ) using network packet manipulation.
+# Poster: Adversarial Perturbation Attacks on the State-of-the-Art Cryptojacking Detection System in IoT Networks (ACM CCS 2022)
 
-## Notice
-This repository is the code for the poster accepted for ACM CCS 2022.   
-" Poster: Adversarial Perturbation Attacks on the State-of-the-Art Cryptojacking Detection System in IoT Networks "
+#### Kiho Lee*, Sanghak Oh*, and Hyoungshick Kim*.
+##### Sungkyunkwan University*
+
+---
+
+## MiningPerturbation
+
+MiningPerturbation is a python script for bypassing the network-based cryptojacking detection model (Tekiner et al. ) using network packet manipulation.
 
 ## Target Machine Learning Model
 Tekiner et al. [1] recently proposed the state-of-the-art cryptojacking detection system in IoT networks, using the IoT devices’ network traffic for cryptojacking. The proposed solution first extracts time-series features from network packet data between an IoT device and a mining server (by the tsfresh [2] package in Python) and analyzes their statistical properties to use them as the features for a classifier. Tekiner et al. performed experiments to find the key features, the most accurate classifier, and the optimum training size and evaluated the effectiveness of their cryptojacking detection mechanisms under various attacker configurations and network
